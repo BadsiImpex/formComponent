@@ -164,7 +164,7 @@ class SubmitBtn extends React.Component {
 	render(){
 		return (
 			<React.Fragment>
-				<button type="button" onClick={this.clickSubmit}>{this.props.msgCTA}</button>
+				<button className={this.props.className} type="button" onClick={this.clickSubmit}>{this.props.msgCTA}</button>
 			</React.Fragment>
 		);
 	}
@@ -304,7 +304,7 @@ class SubmitDetail extends React.Component {
 					  description="Yes I agree with Terms & Condition"
                       gdprChange={this.gdprChange}
                       gdprError = {this.props.gdprError} />
-				<SubmitBtn formSubmit = {this.props.formSubmit} msgCTA="Book Your Service" />
+				<SubmitBtn formSubmit = {this.props.formSubmit} className={this.props.className} msgCTA="Book Your Service" />
 			</React.Fragment>
 		);
 	}
