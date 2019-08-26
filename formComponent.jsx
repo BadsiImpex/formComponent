@@ -142,15 +142,17 @@ class Gdpr extends React.Component {
 	}
 	render(){
 		return (
-			<div>
+			<React.Fragment>
+				<div>
 				<input type="checkbox" id={this.props.ID} onChange={this.gdprChange}></input>
 				<label for={this.props.ID}>
 					<a href={this.props.link} target="_blank" rel="noreferrer">
 						{this.props.description}
 					</a>
 				</label>
+				</div>
                 <span>{this.props.gdprError}</span>
-			</div>
+			</React.Fragment>
 		);
 	}
 }
@@ -363,4 +365,3 @@ class Validate {
 	}
 }
 export {TextField, Email, TextArea, DateInput, ServiceType, Gdpr, SubmitBtn, ServiceDetail, CarDetail, ContactDetail, SubmitDetail, Validate}; 
-
