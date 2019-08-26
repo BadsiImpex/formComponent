@@ -85,6 +85,7 @@ class DateInput extends React.Component {
 				<label for={this.props.ID}>{this.props.label}</label>
 				<input id={this.props.ID} type="date" value={this.props.dateVal} 
 min={currDate} onChange={this.handleChange}></input>
+				<br/>
                 <span>{this.props.dateError}</span>
 			</React.Fragment>
 		);
@@ -361,5 +362,5 @@ class Validate {
 		}
 	}
 }
-
 export {TextField, Email, TextArea, DateInput, ServiceType, Gdpr, SubmitBtn, ServiceDetail, CarDetail, ContactDetail, SubmitDetail, Validate}; 
+
