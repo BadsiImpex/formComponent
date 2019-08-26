@@ -279,7 +279,7 @@ class ContactDetail extends React.Component {
 					   onEmailChange={this.emailChange}
 					   emailError={this.props.emailError}></Email>
 				<TextField ID="tel"
-						   label="Telfon Mobil"
+						   label="Telefon Mobil"
 						   name="tel"
 						   text={this.props.telVal}
 						   onTextChange={this.telChange}
@@ -301,10 +301,10 @@ class SubmitDetail extends React.Component {
 			<React.Fragment>
 				<Gdpr ID="gdpr"
 					  link="/gdpr/"
-					  description="Yes I agree with Terms & Condition"
+					  description="Sunt de acord cu Termenii & Conditiile"
                       gdprChange={this.gdprChange}
                       gdprError = {this.props.gdprError} />
-				<SubmitBtn formSubmit = {this.props.formSubmit} className={this.props.className} msgCTA="Book Your Service" />
+				<SubmitBtn className={this.props.className} formSubmit = {this.props.formSubmit} msgCTA="Rezerva-ti Serviciul" />
 			</React.Fragment>
 		);
 	}
@@ -352,7 +352,7 @@ class Validate {
 	}
 	validateTelfon(telfon){
 		if(this.isEmpty(telfon)) {
-			return "Enter Telfon Please";
+			return "Enter Telefon Please";
 		}
 		else if(!this.isValidTel(telfon)){
 			return "Not a valid number";
@@ -361,4 +361,5 @@ class Validate {
 		}
 	}
 }
+
 export {TextField, Email, TextArea, DateInput, ServiceType, Gdpr, SubmitBtn, ServiceDetail, CarDetail, ContactDetail, SubmitDetail, Validate}; 
