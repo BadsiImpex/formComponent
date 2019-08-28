@@ -117,9 +117,9 @@ class ServiceType extends React.Component {
 										{
 											backgroundImage: "url("+[icon[index]]+")",
 											backgroundRepeat: "no-repeat",
-											width: "250px",
-											height: "250px",
-											paddingTop: "180px"
+											width: "150px",
+											height: "150px",
+											paddingTop: "90px"
 										}
 									}>
 								{service}</button>
@@ -193,12 +193,14 @@ class ServiceDetail extends React.Component {
 	render() {
 		return(
 			<React.Fragment>
-				<ServiceType serviceNames={this.props.serviceNames}
+				<div className="service-wrapper">
+					<ServiceType serviceNames={this.props.serviceNames}
 							 serviceIcons={this.props.serviceIcons}
 							 servSelected = {this.props.serviceType}
 							 handleClick = {this.handleClick}
 							 className = {this.props.serviceBtnClass}
                              serviceTypeError= {this.props.serviceTypeError}/>
+				</div>
 				<DateInput ID="date"
 					  label="Data Programmari"
 					  dateVal={this.props.dateVal}
