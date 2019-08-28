@@ -102,6 +102,7 @@ class ServiceType extends React.Component {
 	render(){
 		const onclickFunc = this.handleServTypeChange;
 		const icon = this.props.serviceIcons;
+		const classes = this.props.className;
 		return (
 			<React.Fragment>
 				{this.props.serviceNames.map(function(service, index) {
@@ -111,6 +112,7 @@ class ServiceType extends React.Component {
 									value={service}
 									onClick={onclickFunc}
 									name = {service}
+									className={classes}
 									style={ 
 										{
 											backgroundImage: "url("+[icon[index]]+")",
@@ -195,6 +197,7 @@ class ServiceDetail extends React.Component {
 							 serviceIcons={this.props.serviceIcons}
 							 servSelected = {this.props.serviceType}
 							 handleClick = {this.handleClick}
+							 className = {this.props.serviceBtnClass}
                              serviceTypeError= {this.props.serviceTypeError}/>
 				<DateInput ID="date"
 					  label="Data Programmari"
