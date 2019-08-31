@@ -98,14 +98,21 @@ class ServiceType extends React.Component {
 	}
 	handleServTypeChange(e){
 		this.props.handleClick(e.target.value);
-	}
+	} 
 	render(){
 		const onclickFunc = this.handleServTypeChange;
 		const icon = this.props.serviceIcons;
-		const classes = this.props.className;
+		const userClasses = this.props.className;
+		let selected = this.props.servSelected;
 		return (
 			<React.Fragment>
 				{this.props.serviceNames.map(function(service, index) {
+					let classes = userClasses;
+					if(selected === service){
+						classes = userClasses+" servSelected"; 
+					} else {
+						classes = userClasses;
+					}
 					return (
 						<React.Fragment>
 							<button key={index}
@@ -369,4 +376,27 @@ class Validate {
 		}
 	}
 }
-export {TextField, Email, TextArea, DateInput, ServiceType, Gdpr, SubmitBtn, ServiceDetail, CarDetail, ContactDetail, SubmitDetail, Validate}; 
+
+class SendData {
+	constructor(data){
+		this.data = data;
+	}
+	send(){
+		console.log('sending data');
+		let data = JSON.stringify(this.data);
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function() {
+			console.log(this.readyState,this.status);
+			if (this.readyState == 4 && this.status == 200){
+				console.log(this.responseText);
+				console.log('data sent');
+			}
+		}
+		xmlhttp.open("POST","/wp-content/themes/salient-child/controller/itpSubmitForm.php", true);
+		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xmlhttp.send("data="+ data);
+	}
+}
+export {TextField, Email, TextArea, DateInput,
+		ServiceType, Gdpr, SubmitBtn, ServiceDetail,
+		CarDetail, ContactDetail, SubmitDetail, Validate, SendData}; 
