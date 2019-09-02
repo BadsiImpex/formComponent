@@ -138,6 +138,54 @@ class ServiceType extends React.Component {
 		);
 	}
 }
+class CarType extends React.Component {
+	constructor(props){
+		super(props);
+		this.handleCarTypeChange = this.handleCarTypeChange.bind(this);
+	}
+	handleCarTypeChange(e){
+		this.props.handleClick(e.target.value);
+	} 
+	render(){
+		const onclickFunc = this.handleCarTypeChange;
+		const icon = this.props.carIcons;
+		const userClasses = this.props.className;
+		let selected = this.props.carType;
+		return (
+			<React.Fragment>
+				{this.props.carNames.map(function(car, index) {
+					let classes = userClasses;
+					if(selected === car){
+						classes = userClasses+" carSelected"; 
+					} else {
+						if (selected != "") classes = userClasses+" carNotSelected";
+					}
+					return (
+						<React.Fragment>
+							<button key={index}
+									value={car}
+									onClick={onclickFunc}
+									name = {car}
+									className={classes}
+									style={ 
+										{
+											backgroundImage: "url("+[icon[index]]+")",
+											backgroundRepeat: "no-repeat",
+											width: "150px",
+											height: "150px",
+											paddingTop: "90px"
+										}
+									}>
+								{car}</button>
+						</React.Fragment>
+					);
+                })}
+				<br/>
+                <span>{this.props.carTypeError}</span>
+		    </React.Fragment>
+		);
+	}
+}
 class Gdpr extends React.Component {
 	constructor(props){
 		super(props);
@@ -378,11 +426,22 @@ class Validate {
 }
 
 class SendData {
+	controllerLink = {
+		'testDrive': '/wp-content/themes/salient-child/controller/testDriveForm.php',
+		'itp':'/wp-content/themes/salient-child/controller/itpSubmitForm.php',
+		'mecanica': '/wp-content/themes/salient-child/controller/mecanincaSubmitForm.php',
+		'caroserie': '/wp-content/themes/salient-child/controller/caroserieSubmitForm.php',
+		'daune': '/wp-content/themes/salient-child/controller/dauneSubmitForm.php',
+		'peise': '/wp-content/themes/salient-child/controller/peiseSubmitForm.php',
+		'tireHotel': '/wp-content/themes/salient-child/controller/tireHotelSubmitForm.php',
+		'asigurari': '/wp-content/themes/salient-child/controller/asigurariSubmitForm.php',
+	};
 	constructor(data){
 		this.data = data;
 	}
-	send(){
+	send(controller){
 		console.log('sending data');
+		console.log(this.controllerLink[controller]);
 		let data = JSON.stringify(this.data);
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.onreadystatechange = function() {
@@ -392,11 +451,11 @@ class SendData {
 				console.log('data sent');
 			}
 		}
-		xmlhttp.open("POST","/wp-content/themes/salient-child/controller/itpSubmitForm.php", true);
+		xmlhttp.open("POST",this.controllerLink[controller], true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xmlhttp.send("data="+ data);
 	}
 }
 export {TextField, Email, TextArea, DateInput,
-		ServiceType, Gdpr, SubmitBtn, ServiceDetail,
+		ServiceType, CarType, Gdpr, SubmitBtn, ServiceDetail,
 		CarDetail, ContactDetail, SubmitDetail, Validate, SendData}; 
