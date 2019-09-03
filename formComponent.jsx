@@ -171,9 +171,10 @@ class CarType extends React.Component {
 										{
 											backgroundImage: "url("+[icon[index]]+")",
 											backgroundRepeat: "no-repeat",
-											width: "150px",
-											height: "150px",
-											paddingTop: "90px"
+											width: "190px",
+											height: "100px",
+											paddingTop: "60px",
+											backgroundPosition: "20px 10px"
 										}
 									}>
 								{car}</button>
